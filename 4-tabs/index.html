@@ -1,15 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      /* write CSS here */
-    </style>
-  </head>
-  <body></body>
-  <script>
-    // write javascript here
-  </script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabs Component</title>
+  <style>
+    /* write CSS here */
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    html {
+      font-size: 62.5%;
+      font-family: 'Poppins', sans-serif;
+
+      overflow: hidden;
+    }
+
+    body {
+      background-color: #848A96;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .container {
+      background: white;
+      height: auto;
+      width: 50rem;
+    }
+
+    .tabs-options {
+      margin-bottom: 2rem;
+    }
+
+    .tabs-options button {
+      padding: 2rem;
+      border: none;
+      color: rgb(0, 0, 0, .4);
+      background-color: transparent;
+      border-bottom: 3px solid color: rgb(0, 0, 0, .3);
+      display: inline-block;
+      cursor: pointer;
+      transition: :all .2s;
+      font
+    }
+
+    .tabs-options button:hover {
+      border-bottom: 3px solid #2865ED;
+      color: #2865ED;
+    }
+
+    .display-msg p {
+      font-size: 1.4rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabs-options">
+      <button class="profile">Profile</button>
+      <button class="dashboard">Dashboard</button>
+      <button class="Settings">Settings</button>
+      <button class="Contacts">Contacts</button>
+    </div>
+    <div class="display-msg">
+      <p class="profile-msg">
+        This is some placeholder content the <b>Profile tab's associated content.</b> Clicking another tab will toggle
+        the visibility of this one for the next. The tab Javascript swaps classes to control the content visibility and
+        styling.
+      </p>
+      <p class="dashboard-msg hidden">
+        This is some placeholder content the <b>Dashboard tab's associated content.</b> Clicking another tab will toggle
+        the
+        visibility of this one for the next. The tab Javascript swaps classes to control the content visibility and
+        styling.
+      </p>
+      <p class="settings-msg hidden">
+        This is some placeholder content the <b>Settings tab's associated content.</b> Clicking another tab will toggle
+        the
+        visibility of this one for the next. The tab Javascript swaps classes to control the content visibility and
+        styling.
+      </p>
+      <p class="contacts-msg hidden">
+        This is some placeholder content the <b>Contacts tab's associated content.</b> Clicking another tab will toggle
+        the
+        visibility of this one for the next. The tab Javascript swaps classes to control the content visibility and
+        styling.
+      </p>
+    </div>
+  </div>
+
+
+</body>
+<script>
+  // write javascript here
+</script>
+
 </html>
