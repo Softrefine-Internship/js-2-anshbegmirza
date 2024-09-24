@@ -1,15 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      /* write CSS here */
-    </style>
-  </head>
-  <body></body>
-  <script>
-    // write javascript here
-  </script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3-Carousel</title>
+  <style>
+    /* write CSS here */
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    html {
+      font-size: 62.5%;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: #424242;
+
+    }
+
+    .slideshow-container {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 7rem;
+      width: 10rem;
+      border-radius: 50%;
+      background-color: rgba(124, 124, 124, 0.3);
+      border: 3px solid transparent;
+      color: #fff;
+    }
+
+    .btn:hover {
+      border: 3px solid white;
+    }
+
+    .btn-next {
+      top: 50%;
+      right: 0;
+      margin-right: 2rem;
+    }
+
+    .btn-prev {
+      margin-left: 2rem;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .dots {
+      display: inline-block;
+      cursor: pointer;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: #ffffff;
+      opacity: 0.3;
+      margin: 0 .5rem;
+      transition: all .3s;
+    }
+
+    .dots:hover {
+      opacity: 1;
+    }
+
+    .slide-dots {
+      position: absolute;
+      left: 48%;
+      bottom: 0;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Carousel container -->
+  <section class="slideshow-container">
+    <!-- Buttons to switch next or previous -->
+    <button class="btn-prev btn">
+      <span>&#8249</span>
+    </button>
+    <button class="btn-next btn">
+      <span>&#8250</span>
+    </button>
+    <!-- Images -->
+    <div class="slide"><img src="imgs/1.jpg" style="width: 100%;" alt=""></div>
+    <div class="slide"><img src="imgs/2.jpg" style="width: 100%;" alt=""></div>
+    <div class="slide"><img src="imgs/3.jpg" style="width: 100%;" alt=""></div>
+    <div class="slide"><img src="imgs/4.jpg" style="width: 100%;" alt=""></div>
+    <div class="slide"><img src="imgs/5.jpg" style="width: 100%;" alt=""></div>
+    <!-- Dots -->
+    <div class="slide-dots">
+      <div class="dots"></div>
+      <div class="dots"></div>
+      <div class="dots"></div>
+      <div class="dots"></div>
+      <div class="dots"></div>
+    </div>
+  </section>
+</body>
+<script>
+  // write javascript here
+  const nextBtn = document.querySelector('.btn-next');
+  const prevBtn = document.querySelector('.btn-prev');
+
+
+</script>
+
 </html>

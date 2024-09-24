@@ -208,6 +208,14 @@
     displayMsgEl.classList.remove('hidden');
   }
 
+  // Function to close modal message on escape key
+  document.addEventListener('keydown', function (pressedKey) {
+    console.log(pressedKey.key);
+    if (pressedKey.key === 'Escape' && !messageBoxEl.classList.contains('hidden')) {
+      closeMsg();
+    }
+  });
+
   clickhereBtnEl.addEventListener('click', openMsg);
   closeBtnEl.addEventListener('click', closeMsg);
   cancelBtnEl.addEventListener('click', closeMsg);

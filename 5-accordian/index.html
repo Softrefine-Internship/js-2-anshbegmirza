@@ -1,15 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      /* write CSS here */
-    </style>
-  </head>
-  <body></body>
-  <script>
-    // write javascript here
-  </script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <title>5-Accordian</title>
+  <style>
+    /* write CSS here */
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    html {
+      font-size: 62.5%;
+      overflow: hidden;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      background-color: #424242;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Container */
+    .container {
+      background-color: #fff;
+      width: 80rem;
+      border-radius: .8rem;
+      box-shadow: 0 .2rem .8rem rgba(0, 0, 0, .2);
+      padding: 2rem;
+    }
+
+    .accordion-body {
+      border: 1px solid #a1a1a1;
+      border-radius: .5rem;
+    }
+
+    .accordion-item:nth-child(1) {
+      border-bottom: 1px solid #a1a1a1;
+    }
+
+    .accordion-item:nth-child(2) {
+      border-bottom: 1px solid #a1a1a1;
+    }
+
+    .accordion-header {
+      cursor: pointer;
+      font-size: 2rem;
+      padding: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #1a1a1a;
+    }
+
+    .accordion-header:hover {
+      color: #2E7BD7;
+    }
+
+    .accordion-content {
+      padding: 1.6rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease-in;
+    }
+
+    .accordion-content.open {
+      padding-top: 1rem;
+      max-height: 100vh;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="accordion-body">
+      <!-- Item--1 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <p>Accordion Item #1</p>
+          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
+        </div>
+        <div class="accordion-content hidden">
+          <p>This is the first item's accordion body. It is show by default, until the collapse
+            plugin adds appropriate
+            classes that we use to style each element. These classes control the overall appearnce, as well as the
+            showing
+            and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default
+            variables.It's also worth noticing that just about any HTML can go within the .accordion-body, though the
+            transition does limit overflow.</p>
+        </div>
+      </div>
+
+      <!-- Item--2 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <p>Accordion Item #2</p>
+          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
+        </div>
+        <div class="accordion-content hidden">
+          <p>This is the Second item's accordion body. It is show by default, until the collapse
+            plugin adds appropriate
+            classes that we use to style each element. These classes control the overall appearnce, as well as the
+            showing
+            and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default
+            variables.It's also worth noticing that just about any HTML can go within the .accordion-body, though the
+            transition does limit overflow.</p>
+        </div>
+      </div>
+
+      <!-- Item--3 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <p>Accordion Item #3</p>
+          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
+        </div>
+        <div class="accordion-content hidden">
+          <p>This is the Third item's accordion body. It is show by default, until the collapse
+            plugin adds appropriate
+            classes that we use to style each element. These classes control the overall appearnce, as well as the
+            showing
+            and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default
+            variables.It's also worth noticing that just about any HTML can go within the .accordion-body, though the
+            transition does limit overflow.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Icon link -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+<script>
+  // write javascript here
+  const accordionHeaderEl = document.querySelector('.accordion-header');
+  const expandArrowDownEl = document.querySelector('.arrow-down')
+  const collapseArrowUpEl = document.querySelector('.arrow-up')
+  const accordionContentEl = document.querySelector('accordion-content');
+
+</script>
+
 </html>
