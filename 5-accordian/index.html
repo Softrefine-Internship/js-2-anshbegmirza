@@ -80,7 +80,7 @@
       transition: max-height .3s ease-in;
     }
 
-    .accordion-content.open {
+    .accordion-content-open {
       padding-top: 1rem;
       max-height: 100vh;
     }
@@ -98,7 +98,7 @@
       <div class="accordion-item">
         <div class="accordion-header">
           <p>Accordion Item #1</p>
-          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="hidden arrow-up" name="chevron-up-outline"></ion-icon>
           <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
         </div>
         <div class="accordion-content hidden">
@@ -116,7 +116,7 @@
       <div class="accordion-item">
         <div class="accordion-header">
           <p>Accordion Item #2</p>
-          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="hidden arrow-up" name="chevron-up-outline"></ion-icon>
           <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
         </div>
         <div class="accordion-content hidden">
@@ -134,7 +134,7 @@
       <div class="accordion-item">
         <div class="accordion-header">
           <p>Accordion Item #3</p>
-          <ion-icon class="hidden" class="arrow-up" name="chevron-up-outline"></ion-icon>
+          <ion-icon class="hidden arrow-up" name="chevron-up-outline"></ion-icon>
           <ion-icon class="arrow-down" name="chevron-down-outline"></ion-icon>
         </div>
         <div class="accordion-content hidden">
@@ -155,11 +155,67 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 <script>
+  /*
   // write javascript here
-  const accordionHeaderEl = document.querySelector('.accordion-header');
-  const expandArrowDownEl = document.querySelector('.arrow-down')
-  const collapseArrowUpEl = document.querySelector('.arrow-up')
-  const accordionContentEl = document.querySelector('accordion-content');
+  const accordionHeaderEl = document.querySelectorAll('.accordion-header');
+  const expandArrowDownEl = document.querySelectorAll('.arrow-down')
+  const collapseArrowUpEl = document.querySelectorAll('.arrow-up')
+  const accordionContentEl = document.querySelectorAll('.accordion-content');
+
+  console.log(accordionContentEl);
+  for (let i = 0; i < accordionHeaderEl.length; i++) {
+    accordionHeaderEl[i].addEventListener('click', function () {
+      //check if any accordion is open or not
+      if (accordionContentEl[i].classList.contains("accordion-content-open")) {
+        expandArrowDownEl[i].classList.add('hidden');
+        collapseArrowUpEl[i].classList.remove("hidden");
+        accordionContentEl[i].classList.add("accordion-content-open");
+        accordionContentEl[i].classList.remove("hidden");
+      }
+      else
+        for (let j = 0; accordionContentEl.length; j++) {
+          expandArrowDownEl[i].classList.add('hidden');
+          collapseArrowUpEl[i].classList.remove("hidden");
+          accordionContentEl[i].classList.add("accordion-content-open");
+          accordionContentEl[i].classList.remove("hidden");
+        }
+    });
+  };*/
+
+  // Select all necessary elements
+  const accordionHeaderEl = document.querySelectorAll('.accordion-header');
+  const expandArrowDownEl = document.querySelectorAll('.arrow-down');
+  const collapseArrowUpEl = document.querySelectorAll('.arrow-up');
+  const accordionContentEl = document.querySelectorAll('.accordion-content');
+
+  // Loop through each accordion header
+  for (let i = 0; i < accordionHeaderEl.length; i++) {
+    accordionHeaderEl[i].addEventListener('click', function () {
+      // Check if the current accordion is open
+      if (accordionContentEl[i].classList.contains("accordion-content-open")) {
+        // Close the current accordion
+        expandArrowDownEl[i].classList.remove('hidden');
+        collapseArrowUpEl[i].classList.add('hidden');
+        accordionContentEl[i].classList.remove('accordion-content-open');
+        accordionContentEl[i].classList.add('hidden');
+      } else {
+        // Close all other accordions
+        for (let j = 0; j < accordionContentEl.length; j++) {
+          expandArrowDownEl[j].classList.remove('hidden');
+          collapseArrowUpEl[j].classList.add('hidden');
+          accordionContentEl[j].classList.remove('accordion-content-open');
+          accordionContentEl[j].classList.add('hidden');
+        }
+
+        // Open the clicked accordion
+        expandArrowDownEl[i].classList.add('hidden');
+        collapseArrowUpEl[i].classList.remove('hidden');
+        accordionContentEl[i].classList.add('accordion-content-open');
+        accordionContentEl[i].classList.remove('hidden');
+      }
+    });
+  }
+
 
 </script>
 
