@@ -15,6 +15,7 @@
   <title>7-pagination</title>
   <style>
     /* write CSS here */
+    @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet);
 
     *,
     *::after,
@@ -27,51 +28,137 @@
     html {
       font-size: 62.5%;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
     }
 
     body {
       height: 100vh;
       width: 100vw;
+
+      position: relative;
+      font-size: 2rem;
+      line-height: 1.7;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .pagination-container {
+      width: calc(100% - 2rem);
+      padding: 1rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 2rem;
+
     }
 
-
-
-    .btn {
-      display: inline-block;
-      font-size: 4rem;
-      border: 1px solid rgb(0, 0, 0, .3);
-      border-radius: .5rem;
-      background-color: #fefefe;
-      color: rgb(0, 0, 0, .6);
-      transition: all .3s;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: #E9F5FF;
-      color: #4490EF;
+    .pagination-number,
+    .pagination-button {
+      font-size: 2.7rem;
+      background-color: transparent;
+      border: none;
+      margin: 0 0.2rem 0.2rem;
+      padding: 1rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      color: #868686;
+      /* border-radius: .2rem; */
     }
   </style>
 </head>
 
 <body>
-  <!-- pagination box -->
-  <div class="pagination-container">
-    <button class="btn">Previous</button>
-    <button class="btn">1</button>
-    <button class="btn">2</button>
-    <button class="btn">3</button>
-    <button class="btn">4</button>
-    <button class="btn">5</button>
-    <button class="btn">Next</button>
-  </div>
+  <main>
+    <!-- Page data goes here -->
+    <ul id="Data-to-show" area-live="polite" title="page_content" class="data-list" current-page="1">
+      <li>Data 1</li>
+      <li>Data 2</li>
+      <li>Data 3</li>
+      <li>Data 4</li>
+      <li>Data 5</li>
+      <li>Data 6</li>
+      <li>Data 7</li>
+      <li>Data 8</li>
+      <li>Data 9</li>
+      <li>Data 10</li>
+      <li>Data 11</li>
+      <li>Data 12</li>
+      <li>Data 13</li>
+      <li>Data 14</li>
+      <li>Data 15</li>
+    </ul>
+    <!-- Pagination container -->
+    <nav class="pagination-container">
+      <button id="prev-btn" class="pagination-button" area-label="Previous page" title="Previous page">
+        Previous
+      </button>
+
+      <div class="page-numbers" id="pagination-numbers"></div>
+
+      <button id="next-btn" class="pagination-button" area-label="Next page" title="Next-page">
+        Next
+      </button>
+    </nav>
+  </main>
 </body>
 <script>
   // write javascript here
+
+  //selecting elements
+  const paginationNumbers = document.getElementById("pagination-numbers");
+
+  const dataList = document.getElementsByClassName("data-list");
+
+
+  const dataFields = document.querySelectorAll("li");
+
+  const prevBtn = document.getElementById("prev-btn")
+  const nextBtn = document.getElementById("next-btn")
+
+  // console.log(prevBtn, nextBtn);
+
+  const paginationLimit = 3; // amount to show on screen, limit to show on screen.
+
+  const pageCount = Math.ceil(dataFields.length / paginationLimit); // amount of data fields divided by pagination limit
+  let currentPage = 1;
+  // console.log(pageCount);
+
+  //disabling button when no further data to show.
+  const disableBtn = (button) => {
+    button.classList.add("disabled");
+    button.setAttribute("disabled", true);
+  }
+
+  //enabling buttons when content to show.
+  const enableBtn = (button) => {
+    button.classList.remove("disabled");
+    button.setAttribute("disabled");
+  }
+
+  //Checking page status to switch on/off buttons 
+  const pageStatus = () => {
+    if (currentPage === 1) {
+      disableBtn(prevBtn);
+    }
+    else {
+      enableBtn(prevBtn);
+    }
+
+    if (pageCount === currentPage) {
+      disableBtn(nextBtn);
+    }
+    else {
+      enableBtn(nextBtn);
+    }
+  }
+
+  //Handling active 
+
 </script>
 
 </html>
