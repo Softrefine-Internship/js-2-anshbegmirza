@@ -1,15 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      /* write CSS here */
-    </style>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1-Contact-us-form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+<style>
+  /* write your css here */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background-image: radial-gradient(circle at 5% 30%,
+        rgba(247, 229, 244, 1) 5%,
+        transparent 15%),
+      radial-gradient(circle at 30% 10%, #d0c8df 0%, transparent 25%);
+    height: 100vh !important;
+  }
+
+  .container {
+    width: 50vw;
+    margin: auto;
+
+    margin-top: 18px;
+    height: 90vh !important;
+  }
+
+  .contact {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .tagline {
+    color: #5f5f5fce;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    text-decoration: none;
+    padding: 8px 45px;
+    background-color: #4849e0;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 12px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #3636b6;
+  }
+
+
+
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e2e2d7;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked+.slider {
+    background-color: #4849E0;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #4849E0;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(20px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switch--text {
+    display: flex;
+    align-items: center;
+  }
+
+  .byselect {
+    margin-left: 12px;
+    color: #72727285;
+  }
+
+  .privacy {
+    margin-left: 5px;
+    color: #4849e0;
+    font-weight: 500;
+  }
+
+  .privacy:hover {
+    color: #181891;
+    cursor: pointer;
+  }
+
+  .cta-form input {
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: solid 1px #a5a5a56c;
+    border-radius: 5px;
+  }
+
+  textarea {
+    padding: 4px;
+    border: solid 1px #a5a5a56c;
+    height: 81px;
+    margin-bottom: 6px;
+  }
+
+  #first-name {
+    width: 48%;
+    margin-right: 36px;
+  }
+
+  #last-name {
+    width: 48%;
+  }
+
+  .last-name-label {
+    margin-left: -12px;
+  }
+
+  .cta-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 540;
+    margin-bottom: 6px;
+  }
+
+  .first-box {
+    padding-right: 12px !important;
+  }
+
+  .cta-form select {
+    width: 20%;
+    padding: 7px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: solid 1px #a5a5a56c;
+    border-right-style: none;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .select-us {
+    display: flex;
+  }
+
+  .first-lastbox {
+    display: flex;
+    align-items: center;
+    gap: 300px;
+  }
+
+  .first-lastinputs {
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<body class="color-1  color-2">
+  <div class="container">
+    <p class="contact">Contact sales</p>
+    <p class="tagline">
+      Lorem ipsum dolor, sit amet consectetur adipisicing.
+    </p>
+
+    <form action="" class="cta-form">
+      <div class="first-lastbox">
+        <label for="first-name">First name</label>
+        <label for="last-name" class="last-name-label">Last name</label>
+      </div>
+      <div class="first-lastinputs">
+
+        <input id="first-name" class="first-box" type="text" id="frist-name" required>
+        <input id="last-name" class="first-box" type="text" id="last-name" required>
+      </div>
+      <div>
+        <label for="company">Company</label>
+        <input id="company" type="'text'" required>
+      </div>
+
+      <div>
+        <label id="email" for="email">Email</label>
+        <input type="email" id="email-input" required>
+      </div>
+      <label for="phone">Phone Number</label>
+      <div class="select-us">
+
+
+        <select name="" id="phone">
+          <option value="">US</option>
+          <option value="">UK</option>
+        </select>
+        <input type="number" required placeholder="">
+
+      </div>
+      <div>
+        <label for="">Message</label>
+        <div class="messagebox">
+
+          <textarea row="180" cols="83"></textarea>
+        </div>
+      </div>
+
+    </form>
+    <!-- Rounded switch -->
+    <div class="switch--text">
+      <label class="switch">
+        <input id="checkbox" required type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+      <p class="byselect">By selecting this, you agree to our
+      <p class="privacy">privacy policy</p>
+      </p>
+    </div>
+    <button id="submit-btn" class="btn">Let's talk</button>
+  </div>
   <script>
-    // write javascript here
+
+    /*Write js here */
+
+    "use strict"
+    //selecting elements
+    const formEl = document.querySelector('.cta-form');
+    const firstNameEl = document.getElementById('first-name');
+    const lastNameEL = document.getElementById('last-name');
+    const companyEl = document.getElementById('company');
+    const emailEl = document.getElementById('email-input');
+    const phoneNumberEl = document.getElementById('phone');
+    const aggrementCheckboxEl = document.getElementById('checkbox')
+    const submitBtn = document.getElementById('submit-btn')
+    formEl.addEventListener('submit', function () {
+      let isValid = true;
+      if (firstNameEl.value.trim() === "") {
+        isValid = false;
+        alert("Please enter your first name");
+      }
+    });
+    console.log(emailEl, phoneNumberEl, aggrementCheckboxEl);
+
+    submitBtn.addEventListener('click', function () {
+      let isValid = true;
+      if (firstNameEl.value.trim() === "") {
+        isValid = false;
+        alert("Please enter your first name");
+      }
+      if (lastNameEL.value.trim() === "") {
+        isValid = false;
+        alert("Please enter your last name");
+      }
+      if (companyEl.value.trim() === "") {
+        isValid = false;
+        alert("Please enter your company information")
+      }
+      if (emailEl.value.trim() === "") {
+        isValid = false;
+        alert('Please enter valid email address')
+      }
+      if (phoneNumberEl.value.trim() === "") {
+        isValid = false;
+        alert(`please enter valid phone number`)
+      }
+      if (!aggrementCheckboxEl.checked) {
+        isValid = false;
+        alert(`Agree to the privacy policy`)
+        submitBtn.style.cursor = "not-allowed";
+      }
+    })
+
+
   </script>
+</body>
+
 </html>

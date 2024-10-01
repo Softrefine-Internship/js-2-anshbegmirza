@@ -14,9 +14,6 @@
 
   <title>7-pagination</title>
   <style>
-    /* write CSS here */
-    @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet);
-
     *,
     *::after,
     *::before {
@@ -35,7 +32,6 @@
     body {
       height: 100vh;
       width: 100vw;
-
       position: relative;
       font-size: 2rem;
       line-height: 1.7;
@@ -54,20 +50,36 @@
       position: absolute;
       bottom: 0;
       margin-bottom: 2rem;
-
     }
 
     .pagination-number,
     .pagination-button {
       font-size: 2.7rem;
+      cursor: pointer;
       background-color: transparent;
-      border: none;
+      border: 2px solid #ccc;
+      /* Add border */
       margin: 0 0.2rem 0.2rem;
       padding: 1rem;
-      height: 2.5rem;
+      min-height: 2.5rem;
       min-width: 2.5rem;
       color: #868686;
-      /* border-radius: .2rem; */
+      transition: all 0.3s;
+    }
+
+    .pagination-number:hover,
+    .pagination-button:hover {
+      color: #4e78eb;
+      background-color: #e8eeff;
+      border-color: #4e78eb;
+      /* Add border on hover */
+    }
+
+    .pagination-number.active {
+      color: #fff;
+      background-color: #4e78eb;
+      border-color: #4e78eb;
+      /* Active state styling */
     }
   </style>
 </head>
@@ -91,6 +103,16 @@
       <li>Data 13</li>
       <li>Data 14</li>
       <li>Data 15</li>
+      <li>Data 16</li>
+      <li>Data 17</li>
+      <li>Data 18</li>
+      <li>Data 19</li>
+      <li>Data 20</li>
+      <li>Data 21</li>
+      <li>Data 22</li>
+      <li>Data 23</li>
+      <li>Data 24</li>
+      <li>Data 25</li>
     </ul>
     <!-- Pagination container -->
     <nav class="pagination-container">
@@ -98,67 +120,117 @@
         Previous
       </button>
 
-      <div class="page-numbers" id="pagination-numbers"></div>
+      <div class="page-numbers" id="pagination-numbers">
+        <!-- using js innerhtml we will add page numbers here-->
+      </div>
 
-      <button id="next-btn" class="pagination-button" area-label="Next page" title="Next-page">
+      <button id="next-btn" class="pagination-button" area-label="Next page" title="Next page">
         Next
       </button>
     </nav>
   </main>
+
+  <script>
+    // Selecting elements
+    const paginationNumbers = document.getElementById("pagination-numbers");
+    const dataFields = document.querySelectorAll("li");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    // Setting defaults for the page
+    const paginationLimit = 5;
+    const pageCount = Math.ceil(dataFields.length / paginationLimit); // Amount of data fields divided by pagination limit
+    let currentPage = 1;
+
+    // Disabling button when no further data to show
+    const disableBtn = (button) => {
+      button.classList.add("disabled");
+      button.setAttribute("disabled", true);
+
+    };
+
+    // Enabling button when content is available
+    const enableBtn = (button) => {
+      button.classList.remove("disabled");
+      button.removeAttribute("disabled");
+
+    };
+
+    // Checking page status to switch on/off buttons
+    const pageStatus = () => {
+      if (currentPage === 1) {
+        disableBtn(prevBtn);
+        prevBtn.style.cursor = "not-allowed";
+      } else {
+        enableBtn(prevBtn);
+      }
+
+      if (pageCount === currentPage) {
+        disableBtn(nextBtn);
+        nextBtn.style.cursor = "not-allowed";
+      } else {
+        enableBtn(nextBtn);
+      }
+    };
+
+    // Display data based on the current page
+    const displayData = () => {
+      const start = (currentPage - 1) * paginationLimit; // Starting index
+      const end = start + paginationLimit; // End index
+
+      for (let i = 0; i < dataFields.length; i++) {
+        dataFields[i].classList.toggle('hidden', i < start || i >= end); // use index to toggle
+      }
+
+      updatePaginationNumbers(); // Update pagination buttons
+    };
+
+    // Update pagination buttons to reflect current page
+    const updatePaginationNumbers = () => {
+      paginationNumbers.innerHTML = ""; // Clear pagination buttons
+      for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement("button");
+        button.className = "pagination-number";
+        button.textContent = i;
+
+        // Highlight the current page
+        if (i === currentPage) {
+          button.classList.add("active");
+        }
+
+        button.addEventListener("click", () => {
+          currentPage = i;
+          displayData();
+          pageStatus();
+        });
+
+        paginationNumbers.appendChild(button);
+      }
+    };
+
+    // Handling prev button click
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayData();
+        pageStatus();
+      }
+    });
+
+    // Handling next button click
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < pageCount) {
+        currentPage++;
+        displayData();
+        pageStatus();
+      }
+    });
+
+    // Initially show data and set pagination status
+    displayData();
+    pageStatus();
+  </script>
+
 </body>
-<script>
-  // write javascript here
-
-  //selecting elements
-  const paginationNumbers = document.getElementById("pagination-numbers");
-
-  const dataList = document.getElementsByClassName("data-list");
-
-
-  const dataFields = document.querySelectorAll("li");
-
-  const prevBtn = document.getElementById("prev-btn")
-  const nextBtn = document.getElementById("next-btn")
-
-  // console.log(prevBtn, nextBtn);
-
-  const paginationLimit = 3; // amount to show on screen, limit to show on screen.
-
-  const pageCount = Math.ceil(dataFields.length / paginationLimit); // amount of data fields divided by pagination limit
-  let currentPage = 1;
-  // console.log(pageCount);
-
-  //disabling button when no further data to show.
-  const disableBtn = (button) => {
-    button.classList.add("disabled");
-    button.setAttribute("disabled", true);
-  }
-
-  //enabling buttons when content to show.
-  const enableBtn = (button) => {
-    button.classList.remove("disabled");
-    button.setAttribute("disabled");
-  }
-
-  //Checking page status to switch on/off buttons 
-  const pageStatus = () => {
-    if (currentPage === 1) {
-      disableBtn(prevBtn);
-    }
-    else {
-      enableBtn(prevBtn);
-    }
-
-    if (pageCount === currentPage) {
-      disableBtn(nextBtn);
-    }
-    else {
-      enableBtn(nextBtn);
-    }
-  }
-
-  //Handling active 
-
-</script>
 
 </html>
