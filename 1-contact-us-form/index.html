@@ -1,61 +1,139 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1-Contact-us-form</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
 </head>
 <style>
-  /* write your css here */
+  /* Global Reset */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
+  /* BG color gradient */
   body {
     font-family: "Inter", sans-serif;
     background-image: radial-gradient(circle at 5% 30%,
         rgba(247, 229, 244, 1) 5%,
         transparent 15%),
       radial-gradient(circle at 30% 10%, #d0c8df 0%, transparent 25%);
-    height: 100vh !important;
+    height: 100vh;
+    display: grid;
+    place-items: center;
   }
 
   .container {
-    width: 50vw;
-    margin: auto;
-
-    margin-top: 18px;
-    height: 90vh !important;
+    width: 45%;
+    /* outline: 1px solid lime; */
+    height: 91%;
   }
 
-  .contact {
-    font-size: 28px;
+  .contact-sales {
+    font-size: 2.4rem;
     font-weight: 700;
     text-align: center;
+    margin-bottom: 1rem;
   }
 
-  .tagline {
-    color: #5f5f5fce;
+  .contact-tagline {
+    font-size: 1.6rem;
+    color: #777;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
+  }
+
+  .first-lastbox {
+    /* outline: 1px solid pink; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .first-name-item label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    cursor: pointer;
+  }
+
+  .first-name-item input {
+    width: 25rem;
+    padding: .5rem;
+    border: 1px solid #a5a5a5c5;
+    border-radius: .3rem;
+  }
+
+  .form-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1.4rem;
+    cursor: pointer;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #a5a5a5c5;
+    border-radius: .3rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .phone-fields {
+    /* outline: 1px solid blue; */
+    display: flex;
+    border: 1px solid #a5a5a5c5;
+    margin-bottom: 1.4rem;
+  }
+
+  .phone-select {
+    border: none;
+    background-color: transparent;
+    color: #777;
+    padding: .3rem;
+  }
+
+  .phone-input {
+    border: none;
+    width: 100%;
+    padding: .3rem;
+
+  }
+
+
+  .messagebox {
+    margin-bottom: 1.6rem;
+
+  }
+
+  .messagebox textarea {
+    height: 10rem;
+    border: 1px solid #a5a5a5c5;
+    width: 100%;
   }
 
   .btn {
     text-decoration: none;
-    padding: 8px 45px;
+    padding: .8rem 4.5rem;
     background-color: #4849e0;
     color: #fff;
     border: none;
     font-size: 16px;
     font-weight: 600;
-    margin-top: 12px;
-    border-radius: 8px;
+    margin-top: 2.6rem;
+    border-radius: .8rem;
     width: 100%;
     cursor: pointer;
   }
@@ -64,14 +142,14 @@
     background-color: #3636b6;
   }
 
-
+  /* Switch css */
 
   /* The switch - the box around the slider */
   .switch {
     position: relative;
     display: inline-block;
-    width: 45px;
-    height: 25px;
+    width: 4.5rem;
+    height: 2.5rem;
   }
 
   /* Hide default HTML checkbox */
@@ -135,8 +213,9 @@
   }
 
   .byselect {
+    font-size: 1.1rem;
     margin-left: 12px;
-    color: #72727285;
+    color: #777;
   }
 
   .privacy {
@@ -150,138 +229,132 @@
     cursor: pointer;
   }
 
-  .cta-form input {
-    width: 100%;
-    padding: 7px;
-    font-size: 14px;
-    margin-bottom: 20px;
-    border: solid 1px #a5a5a56c;
-    border-radius: 5px;
+  @media(max-width:77em) {
+    html {
+      font-size: 55%;
+    }
+
+    .first-lastbox {
+      gap: 2rem;
+    }
   }
 
-  textarea {
-    padding: 4px;
-    border: solid 1px #a5a5a56c;
-    height: 81px;
-    margin-bottom: 6px;
+  @media(max-width:63em) {
+    .first-name-item input {
+      width: 20rem;
+
+    }
   }
 
-  #first-name {
-    width: 48%;
-    margin-right: 36px;
+  @media(max-width:51em) {
+    html {
+      font-size: 50%;
+    }
+
+    .container {
+      width: 58%;
+    }
+
+    .first-name-item input {
+      width: 20rem;
+
+    }
   }
 
-  #last-name {
-    width: 48%;
+  @media(max-width:37em) {
+    .first-name-item input {
+      width: 20rem;
+
+    }
+
+    .first-lastbox {
+      gap: 0rem;
+    }
+
+    .container {
+      width: 80%;
+    }
   }
 
-  .last-name-label {
-    margin-left: -12px;
+  @media(max-width:26em) {
+    .first-name-item input {
+      width: 18rem;
+
+    }
+
+    .container {
+
+      width: 90%;
+    }
   }
 
-  .cta-form label {
-    display: block;
-    font-size: 14px;
-    font-weight: 540;
-    margin-bottom: 6px;
-  }
-
-  .first-box {
-    padding-right: 12px !important;
-  }
-
-  .cta-form select {
-    width: 20%;
-    padding: 7px;
-    font-size: 14px;
-    margin-bottom: 20px;
-    border: solid 1px #a5a5a56c;
-    border-right-style: none;
-    border-radius: 5px;
-    background-color: #fff;
-  }
-
-  .select-us {
-    display: flex;
-  }
-
-  .first-lastbox {
-    display: flex;
-    align-items: center;
-    gap: 300px;
-  }
-
-  .first-lastinputs {
-    display: flex;
-    align-items: center;
+  /* To remove the arrows on phone input */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 </style>
 
-<body class="color-1  color-2">
+<body>
   <div class="container">
-    <p class="contact">Contact sales</p>
-    <p class="tagline">
-      Lorem ipsum dolor, sit amet consectetur adipisicing.
+    <p class="contact-sales">Contact Sales</p>
+    <p class="contact-tagline"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, distinctio
     </p>
-
-    <form action="" class="cta-form">
+    <form action="" class="contact-us-form">
       <div class="first-lastbox">
-        <label for="first-name">First name</label>
-        <label for="last-name" class="last-name-label">Last name</label>
-      </div>
-      <div class="first-lastinputs">
+        <div class="first-name-item">
+          <label for="first-name">First name</label>
+          <br>
+          <input id="first-name" class="first-box" type="text" required>
+        </div>
+        <div class="first-name-item">
+          <label for="first-name">Last name</label>
+          <br>
+          <input id="last-name" class="first-box" type="text" required>
+        </div>
 
-        <input id="first-name" class="first-box" type="text" id="frist-name" required>
-        <input id="last-name" class="first-box" type="text" id="last-name" required>
       </div>
-      <div>
-        <label for="company">Company</label>
-        <input id="company" type="'text'" required>
-      </div>
+      <label for="company" class="form-label">Company</label>
+      <input type="text" id="company" class="form-input">
 
-      <div>
-        <label id="email" for="email">Email</label>
-        <input type="email" id="email-input" required>
-      </div>
-      <label for="phone">Phone Number</label>
-      <div class="select-us">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email-input" class="form-input">
 
-
-        <select name="" id="phone">
+      <label for="phone-number" class="form-label">Phone Number</label>
+      <div class="phone-fields">
+        <select name="" class="phone-select" id="phone">
           <option value="">US</option>
           <option value="">UK</option>
         </select>
-        <input type="number" required placeholder="">
-
-      </div>
-      <div>
-        <label for="">Message</label>
-        <div class="messagebox">
-
-          <textarea row="180" cols="83"></textarea>
-        </div>
+        <input type="number" class="phone-input " required placeholder="">
       </div>
 
-    </form>
-    <!-- Rounded switch -->
-    <div class="switch--text">
-      <label class="switch">
-        <input id="checkbox" required type="checkbox" />
-        <span class="slider round"></span>
-      </label>
-      <p class="byselect">By selecting this, you agree to our
-      <p class="privacy">privacy policy</p>
-      </p>
-    </div>
-    <button id="submit-btn" class="btn">Let's talk</button>
+      <label for="message" class="form-label">Message</label>
+      <div class="messagebox">
+        <textarea row="200" cols="71"></textarea>
+      </div>
+
+      <!-- Round switch and submit btn -->
+      <div class="switch--text">
+        <label class="switch">
+          <input id="checkbox" required type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <p class="byselect">By selecting this, you agree to our
+        <p class="privacy">privacy policy</p>
+        </p>
+      </div>
+      <button id="submit-btn" class="btn">Let's talk</button>
   </div>
+  </form>
+  </div>
+
   <script>
-
-    /*Write js here */
-
-    "use strict"
+    // JS
+    " use strict;"
     //selecting elements
-    const formEl = document.querySelector('.cta-form');
+    const formEl = document.querySelector('.contact-us-form');
     const firstNameEl = document.getElementById('first-name');
     const lastNameEL = document.getElementById('last-name');
     const companyEl = document.getElementById('company');
@@ -289,6 +362,7 @@
     const phoneNumberEl = document.getElementById('phone');
     const aggrementCheckboxEl = document.getElementById('checkbox')
     const submitBtn = document.getElementById('submit-btn')
+
     formEl.addEventListener('submit', function () {
       let isValid = true;
       if (firstNameEl.value.trim() === "") {
@@ -296,37 +370,46 @@
         alert("Please enter your first name");
       }
     });
-    console.log(emailEl, phoneNumberEl, aggrementCheckboxEl);
+
+
+    // console.log(emailEl, phoneNumberEl, aggrementCheckboxEl);
+
 
     submitBtn.addEventListener('click', function () {
-      let isValid = true;
+      let isValid = true; // only submit form when it is true
+
       if (firstNameEl.value.trim() === "") {
         isValid = false;
         alert("Please enter your first name");
       }
+
       if (lastNameEL.value.trim() === "") {
         isValid = false;
         alert("Please enter your last name");
       }
+
       if (companyEl.value.trim() === "") {
         isValid = false;
         alert("Please enter your company information")
       }
+
       if (emailEl.value.trim() === "") {
         isValid = false;
         alert('Please enter valid email address')
       }
+
       if (phoneNumberEl.value.trim() === "") {
         isValid = false;
         alert(`please enter valid phone number`)
       }
+
       if (!aggrementCheckboxEl.checked) {
         isValid = false;
         alert(`Agree to the privacy policy`)
         submitBtn.style.cursor = "not-allowed";
       }
-    })
 
+    })
 
   </script>
 </body>
