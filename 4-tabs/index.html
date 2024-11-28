@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tabs Component</title>
   <style>
-    /* write CSS here */
+    /* Reset styles */
     *,
     *::after,
     *::before {
@@ -39,49 +39,99 @@
 
     .tabs-options {
       display: flex;
-      justify-content: space-between;
+      /* justify-content: space-between; */
       margin-bottom: 2rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-      /* Extend line under tabs */
+      /* outline: 1px solid lime; */
+      /* gap: 1rem; */
     }
 
-
     .tabs-options button {
-      flex-grow: 1;
-      padding: 1rem;
+      /* flex-grow: 1; */
+      padding: 1rem 2rem;
       border: none;
-      color: rgba(0, 0, 0, 0.4);
+      color: rgba(0, 0, 0, 0.6);
       background-color: transparent;
       display: inline-block;
       cursor: pointer;
-      transition: all 0.2s;
-      font-size: 2rem;
+      transition: all 0.1s;
+      font-size: 1.4rem;
       text-align: center;
     }
 
-    .tabs-options button:hover {
-      color: #2865ed;
-    }
-
-    /* Active tab styling (same as hover) */
+    .tabs-options button:hover,
     .tabs-options button.active {
       color: #2865ed;
-      border-bottom: 3px solid #2865ed;
+      border-bottom: 2px solid #2865ed;
     }
 
     .display-msg p {
-      font-size: 2rem;
-      color: rgba(0, 0, 0, 0.8);
-    }
-
-    .hidden {
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, 0.7);
+      transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+      opacity: 0;
+      visibility: hidden;
       display: none;
     }
 
-    @media(max-width:50em) {
+    .display-msg b {
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    .display-msg p.active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease-in-out;
+      display: block;
+    }
+
+
+
+    @media (max-width:32em) {
       html {
         font-size: 50%;
       }
+
+      .container {
+        width: max-content;
+        padding: .5rem;
+      }
+    }
+
+
+    @media(max-width:50em) {
+
+      /* html {
+        font-size: 50%;
+      } */
+
+      .container {
+        width: 60rem;
+      }
+
+      .display-msg p {
+        font-size: 2rem;
+      }
+
+      .tabs-options button {
+        font-size: 2rem;
+      }
+    }
+
+
+    @media (min-width: 80em) {
+      html {
+        font-size: 70%;
+      }
+
+      .display-msg p {
+        font-size: 2rem;
+      }
+
+      .tabs-options button {
+        font-size: 2rem;
+      }
+
     }
   </style>
 </head>
@@ -95,83 +145,51 @@
       <button id="contactsBtn">Contacts</button>
     </div>
     <div class="display-msg">
-      <p id="profileMsg">
+      <p id="profileMsg" class="active">
         This is some placeholder content for the <b>Profile tab's associated content.</b> Clicking another tab will
         toggle
         the visibility of this one for the next.
       </p>
-      <p id="dashboardMsg" class="hidden">
+      <p id="dashboardMsg">
         This is some placeholder content for the <b>Dashboard tab's associated content.</b> Clicking another tab will
         toggle the visibility of this one for the next.
       </p>
-      <p id="settingsMsg" class="hidden">
+      <p id="settingsMsg">
         This is some placeholder content for the <b>Settings tab's associated content.</b> Clicking another tab will
         toggle the visibility of this one for the next.
       </p>
-      <p id="contactsMsg" class="hidden">
+      <p id="contactsMsg">
         This is some placeholder content for the <b>Contacts tab's associated content.</b> Clicking another tab will
         toggle the visibility of this one for the next.
       </p>
     </div>
   </div>
-
 </body>
 
 <script>
-  // Select buttons and paragraphs by their IDs
-  const profileBtn = document.getElementById('profileBtn');
-  const dashboardBtn = document.getElementById('dashboardBtn');
-  const settingsBtn = document.getElementById('settingsBtn');
-  const contactsBtn = document.getElementById('contactsBtn');
+  // Select tabs container and all buttons and paragraphs
+  const tabsOptions = document.querySelector('.tabs-options');
+  const allButtons = tabsOptions.querySelectorAll('button');
+  const allMessages = document.querySelectorAll('.display-msg p');
 
-  const profileMsg = document.getElementById('profileMsg');
-  const dashboardMsg = document.getElementById('dashboardMsg');
-  const settingsMsg = document.getElementById('settingsMsg');
-  const contactsMsg = document.getElementById('contactsMsg');
+  // Event delegation to handle tab clicks
+  tabsOptions.addEventListener('click', function (event) {
+    const clickedButton = event.target;
 
-  // Function to hide all tab content
-  function hideAllTabs() {
-    profileMsg.classList.add('hidden');
-    dashboardMsg.classList.add('hidden');
-    settingsMsg.classList.add('hidden');
-    contactsMsg.classList.add('hidden');
-  }
+    // If the clicked element is not a button, do nothing
+    if (!clickedButton.tagName.toLowerCase() === 'button') return;
 
-  // Function to remove 'active' class from all buttons
-  function removeActiveClass() {
-    profileBtn.classList.remove('active');
-    dashboardBtn.classList.remove('active');
-    settingsBtn.classList.remove('active');
-    contactsBtn.classList.remove('active');
-  }
+    // Hide all content and remove active class from all buttons
+    allMessages.forEach(msg => msg.classList.remove('active'));
+    allButtons.forEach(btn => btn.classList.remove('active'));
 
-  // Adding event listeners for each tab
-  profileBtn.addEventListener('click', function () {
-    hideAllTabs();
-    profileMsg.classList.remove('hidden');
-    removeActiveClass();
-    profileBtn.classList.add('active');
-  });
+    // Add active class to clicked button
+    clickedButton.classList.add('active');
 
-  dashboardBtn.addEventListener('click', function () {
-    hideAllTabs();
-    dashboardMsg.classList.remove('hidden');
-    removeActiveClass();
-    dashboardBtn.classList.add('active');
-  });
-
-  settingsBtn.addEventListener('click', function () {
-    hideAllTabs();
-    settingsMsg.classList.remove('hidden');
-    removeActiveClass();
-    settingsBtn.classList.add('active');
-  });
-
-  contactsBtn.addEventListener('click', function () {
-    hideAllTabs();
-    contactsMsg.classList.remove('hidden');
-    removeActiveClass();
-    contactsBtn.classList.add('active');
+    // Show the corresponding message for the clicked tab
+    const targetMessageId = clickedButton.id.replace('Btn', 'Msg');
+    const targetMessage = document.getElementById(targetMessageId);
+    targetMessage.classList.add('active');
   });
 </script>
 

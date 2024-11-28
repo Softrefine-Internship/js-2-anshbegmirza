@@ -39,12 +39,15 @@
       height: auto;
       width: 54rem;
       max-width: 90%;
+      position: relative;
+      z-index: 10;
     }
 
     .message-portion {
       display: flex;
       gap: 2rem;
       justify-content: center;
+
     }
 
     .warning-sign {
@@ -75,10 +78,13 @@
     }
 
     .closePopUp {
-      font-size: 4rem;
+      font-size: 3rem;
       color: rgba(0, 0, 0, 0.6);
       align-self: flex-start;
       cursor: pointer;
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
     }
 
     .closePopUp:hover {
@@ -141,6 +147,14 @@
       font-size: 3rem;
       color: #fff;
     }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.72);
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      z-index: 3;
+    }
   </style>
 </head>
 
@@ -152,9 +166,9 @@
         <ion-icon name="warning-outline" aria-label="Warning"></ion-icon>
       </div>
       <div class="message-1">
-        <p id="modalTitle" class="message-action">
+        <h4 id="modalTitle" class="message-action">
           Deactivate account
-        </p>
+        </h4>
         <p id="modalDescription" class="message-desp">Are you sure you want to deactivate your account? All of your data
           will be permanently
           removed from our servers forever. This action cannot be undone.</p>
@@ -167,6 +181,7 @@
       <button class="deactivate-btn btn ">Deactivate</button>
     </div>
   </div>
+  <div class="overlay hidden"></div>
   <p class="deactivate-msg hidden">Account Deleted</p>
   <!-- Ion-icons link -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -180,17 +195,26 @@
   const cancelBtnEl = document.querySelector('.cancel-btn');
   const deactivateBtnEl = document.querySelector('.deactivate-btn');
   const displayMsgEl = document.querySelector('.deactivate-msg');
+  const overlayBG = document.querySelector('.overlay');
 
+  // Open modal and hide the button
   const openMsg = () => {
     messageBoxEl.classList.remove('hidden');
+    overlayBG.classList.remove('hidden');
     clickhereBtnEl.classList.add('hidden');
+    deactivateBtnEl.focus();
+    // console.log(overlayBG);
   }
 
+  // Close modal
   const closeMsg = () => {
     messageBoxEl.classList.add('hidden');
+    overlayBG.classList.add('hidden');
     clickhereBtnEl.classList.remove('hidden');
+    clickhereBtnEl.focus();
   }
 
+  // Action successful - show "Account Deleted" message
   const actionSuccesful = () => {
     messageBoxEl.classList.add('hidden');
     clickhereBtnEl.classList.add('hidden');
@@ -204,11 +228,15 @@
     }
   });
 
+
   // Event listeners for actions
   clickhereBtnEl.addEventListener('click', openMsg);
   closeBtnEl.addEventListener('click', closeMsg);
   cancelBtnEl.addEventListener('click', closeMsg);
   deactivateBtnEl.addEventListener('click', actionSuccesful);
+
+  // Close modal if clicking outside the message box
+  overlayBG.addEventListener('click', closeMsg);
 </script>
 
 </html>

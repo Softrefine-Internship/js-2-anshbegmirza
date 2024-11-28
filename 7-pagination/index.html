@@ -14,6 +14,10 @@
 
   <title>7-pagination</title>
   <style>
+    :root {
+      --border: 2px solid #ccc;
+    }
+
     *,
     *::after,
     *::before {
@@ -50,6 +54,7 @@
       position: absolute;
       bottom: 0;
       margin-bottom: 2rem;
+      gap: 0;
     }
 
     .pagination-number,
@@ -57,9 +62,8 @@
       font-size: 1.8rem;
       cursor: pointer;
       background-color: transparent;
-      border: 2px solid #ccc;
-      /* Add border */
-      margin: 0 0.2rem 0.2rem;
+      /* border: 2px solid #ccc; */
+      border: none;
       padding: 1rem;
       min-height: 2.5rem;
       min-width: 2.5rem;
@@ -67,19 +71,67 @@
       transition: all 0.3s;
     }
 
+    .pagination-number {
+      border-top: var(--border);
+      border-bottom: var(--border);
+      border-right: var(--border);
+    }
+
+    .pagination-button {
+      border-top: var(--border);
+      border-bottom: var(--border);
+    }
+
+    .prev-btn {
+      border-left: var(--border);
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      border-right: var(--border);
+    }
+
+    .next-btn {
+      border-right: var(--border);
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+
     .pagination-number:hover,
     .pagination-button:hover {
       color: #4e78eb;
-      background-color: #e8eeff;
-      border-color: #4e78eb;
-      /* Add border on hover */
+      background-color: rgba(78, 120, 235, 0.3);
     }
 
     .pagination-number.active {
-      color: #fff;
-      background-color: #4e78eb;
-      border-color: #4e78eb;
-      /* Active state styling */
+      color: #4e78eb;
+      background-color: rgba(78, 120, 235, 0.3);
+    }
+
+    @media (min-width: 90em) {
+      html {
+        font-size: 70%;
+      }
+
+      .pagination-number,
+      .pagination-button {
+        font-size: 3rem;
+        padding: 1rem 2rem;
+      }
+
+      .data-list {
+        font-size: 3rem;
+      }
+
+    }
+
+    @media(max-width:25em) {
+      html {
+        font-size: 50%;
+      }
+
+      .pagination-number,
+      .pagination-button {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -87,36 +139,12 @@
 <body>
   <main>
     <!-- Page data goes here -->
-    <ul id="Data-to-show" area-live="polite" title="page_content" class="data-list" current-page="1">
-      <li>Data 1</li>
-      <li>Data 2</li>
-      <li>Data 3</li>
-      <li>Data 4</li>
-      <li>Data 5</li>
-      <li>Data 6</li>
-      <li>Data 7</li>
-      <li>Data 8</li>
-      <li>Data 9</li>
-      <li>Data 10</li>
-      <li>Data 11</li>
-      <li>Data 12</li>
-      <li>Data 13</li>
-      <li>Data 14</li>
-      <li>Data 15</li>
-      <li>Data 16</li>
-      <li>Data 17</li>
-      <li>Data 18</li>
-      <li>Data 19</li>
-      <li>Data 20</li>
-      <li>Data 21</li>
-      <li>Data 22</li>
-      <li>Data 23</li>
-      <li>Data 24</li>
-      <li>Data 25</li>
+    <ul id="data-list" class="data-list" current-page="1">
+      <!-- Will add data dynamically using JS -->
     </ul>
     <!-- Pagination container -->
     <nav class="pagination-container">
-      <button id="prev-btn" class="pagination-button" area-label="Previous page" title="Previous page">
+      <button id="prev-btn" class="pagination-button prev-btn" area-label="Previous page" title="Previous page">
         Previous
       </button>
 
@@ -124,7 +152,7 @@
         <!-- using js innerhtml we will add page numbers here-->
       </div>
 
-      <button id="next-btn" class="pagination-button" area-label="Next page" title="Next page">
+      <button id="next-btn" class="pagination-button next-btn" area-label="Next page" title="Next page">
         Next
       </button>
     </nav>
@@ -133,41 +161,67 @@
   <script>
     // Selecting elements
     const paginationNumbers = document.getElementById("pagination-numbers");
-    const dataFields = document.querySelectorAll("li");
+    const dataList = document.getElementById("data-list");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
+    console.log(dataList);
 
     // Setting defaults for the page
     const paginationLimit = 5;
-    const pageCount = Math.ceil(dataFields.length / paginationLimit); // Amount of data fields divided by pagination limit
     let currentPage = 1;
+
+    let dataFields = [];
+    let pageCount = 0;
+
+    const dynamicData = [
+      "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10", "Item 11", "Item 12", "Item 13", "Item 14", "Item 15", "Item 16", "Item 17", "Item 18", "Item 19", "Item 20", "Item 21", "Item 22", "Item 23", "Item 24", "Item 25",
+    ];
+
+    // Function to render (display) data to screen
+    const renderData = (data) => {
+      dataList.innerHTML = "";
+      data.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.classList.add("hidden"); // Initially hidden
+        dataList.appendChild(li);
+      });
+
+
+      dataFields = document.querySelectorAll("li");
+      pageCount = Math.ceil(dataFields.length / paginationLimit);
+
+      displayData();
+      pageStatus();
+    };
+
 
     // Disabling button when no further data to show
     const disableBtn = (button) => {
       button.classList.add("disabled");
       button.setAttribute("disabled", true);
-
+      button.style.cursor = "not-allowed"; // Add not-allowed cursor
+      button.style.pointerEvents = "none"; // Prevent clicks
     };
 
     // Enabling button when content is available
     const enableBtn = (button) => {
       button.classList.remove("disabled");
       button.removeAttribute("disabled");
-
+      button.style.cursor = "pointer"; // Restore pointer cursor
+      button.style.pointerEvents = "auto"; // Enable clicks
     };
 
     // Checking page status to switch on/off buttons
     const pageStatus = () => {
       if (currentPage === 1) {
         disableBtn(prevBtn);
-        prevBtn.style.cursor = "not-allowed";
       } else {
         enableBtn(prevBtn);
       }
 
       if (pageCount === currentPage) {
         disableBtn(nextBtn);
-        nextBtn.style.cursor = "not-allowed";
       } else {
         enableBtn(nextBtn);
       }
@@ -178,9 +232,10 @@
       const start = (currentPage - 1) * paginationLimit; // Starting index
       const end = start + paginationLimit; // End index
 
-      for (let i = 0; i < dataFields.length; i++) {
-        dataFields[i].classList.toggle('hidden', i < start || i >= end); // use index to toggle
-      }
+      // Hide or show data fields based on the current page
+      dataFields.forEach((field, index) => {
+        field.classList.toggle("hidden", index < start || index >= end);
+      });
 
       updatePaginationNumbers(); // Update pagination buttons
     };
@@ -196,6 +251,7 @@
         // Highlight the current page
         if (i === currentPage) {
           button.classList.add("active");
+          button.setAttribute("aria-current", "page"); // Accessibility attribute
         }
 
         button.addEventListener("click", () => {
@@ -209,7 +265,7 @@
     };
 
     // Handling prev button click
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener("click", () => {
       if (currentPage > 1) {
         currentPage--;
         displayData();
@@ -218,7 +274,7 @@
     });
 
     // Handling next button click
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener("click", () => {
       if (currentPage < pageCount) {
         currentPage++;
         displayData();
@@ -226,9 +282,19 @@
       }
     });
 
-    // Initially show data and set pagination status
-    displayData();
-    pageStatus();
+    // Check for empty data
+    if (dataFields.length === 0) {
+      disableBtn(prevBtn);
+      disableBtn(nextBtn);
+      paginationNumbers.innerHTML = "<p>No data available.</p>";
+    } else {
+      // Initially show data and set pagination status
+      displayData();
+      pageStatus();
+    }
+
+    renderData(dynamicData);
+
   </script>
 
 </body>

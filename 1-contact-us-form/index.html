@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
 </head>
+
 <style>
   /* Global Reset */
   * {
@@ -34,8 +35,11 @@
 
   .container {
     width: 45%;
-    /* outline: 1px solid lime; */
-    height: 91%;
+    /* min-height: 80vh; */
+    /* height: 80vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .contact-sales {
@@ -53,12 +57,15 @@
   }
 
   .first-lastbox {
-    /* outline: 1px solid pink; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5rem;
-    margin-bottom: 1.4rem;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .first-name-item {
+    flex: 1;
   }
 
   .first-name-item label {
@@ -69,7 +76,7 @@
   }
 
   .first-name-item input {
-    width: 25rem;
+    width: 100%;
     padding: .5rem;
     border: 1px solid #a5a5a5c5;
     border-radius: .3rem;
@@ -79,7 +86,7 @@
     font-size: 1.2rem;
     font-weight: 500;
     display: block;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1rem;
     cursor: pointer;
   }
 
@@ -88,11 +95,10 @@
     padding: .5rem;
     border: 1px solid #a5a5a5c5;
     border-radius: .3rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 2rem;
   }
 
   .phone-fields {
-    /* outline: 1px solid blue; */
     display: flex;
     border: 1px solid #a5a5a5c5;
     margin-bottom: 1.4rem;
@@ -109,13 +115,10 @@
     border: none;
     width: 100%;
     padding: .3rem;
-
   }
-
 
   .messagebox {
     margin-bottom: 1.6rem;
-
   }
 
   .messagebox textarea {
@@ -143,8 +146,6 @@
   }
 
   /* Switch css */
-
-  /* The switch - the box around the slider */
   .switch {
     position: relative;
     display: inline-block;
@@ -152,14 +153,12 @@
     height: 2.5rem;
   }
 
-  /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-  /* The slider */
   .slider {
     position: absolute;
     cursor: pointer;
@@ -168,7 +167,6 @@
     right: 0;
     bottom: 0;
     background-color: #e2e2e2d7;
-    -webkit-transition: 0.4s;
     transition: 0.4s;
   }
 
@@ -180,7 +178,6 @@
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: 0.4s;
     transition: 0.4s;
   }
 
@@ -193,12 +190,9 @@
   }
 
   input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(20px);
+    transform: translateX(16px);
   }
 
-  /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
@@ -222,104 +216,122 @@
     margin-left: 5px;
     color: #4849e0;
     font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .privacy:hover {
     color: #181891;
-    cursor: pointer;
   }
 
-  @media(max-width:77em) {
+  /* Success Message */
+  .success-message {
+    display: none;
+    padding: 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  /* Media Queries for responsiveness */
+
+  @media(max-width: 77em) {
     html {
       font-size: 55%;
+    }
+
+    .container {
+      width: 50%;
     }
 
     .first-lastbox {
       gap: 2rem;
     }
-  }
 
-  @media(max-width:63em) {
-    .first-name-item input {
-      width: 20rem;
-
+    .form-input {
+      padding: .5rem 1.5rem;
     }
   }
 
-  @media(max-width:51em) {
+  @media(max-width: 63em) {
+    .container {
+      width: 65%;
+    }
+
+  }
+
+  @media(max-width: 51em) {
     html {
       font-size: 50%;
     }
 
     .container {
-      width: 58%;
-    }
-
-    .first-name-item input {
-      width: 20rem;
-
+      width: 75%;
+      /* height: 80vh; */
     }
   }
 
-  @media(max-width:37em) {
-    .first-name-item input {
-      width: 20rem;
-
-    }
-
-    .first-lastbox {
-      gap: 0rem;
+  @media(max-width: 37em) {
+    html {
+      font-size: 48%;
     }
 
     .container {
-      width: 80%;
+      width: 85%;
+    }
+
+    .first-name-item input,
+    .form-input {
+      width: 100%;
     }
   }
 
-  @media(max-width:26em) {
-    .first-name-item input {
-      width: 18rem;
-
-    }
-
+  @media(max-width: 26em) {
     .container {
-
       width: 90%;
     }
-  }
 
-  /* To remove the arrows on phone input */
-  input[type="number"]::-webkit-outer-spin-button,
-  input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    .form-input,
+    .first-name-item input {
+      width: 100%;
+    }
+
+    .messagebox textarea {
+      height: 8rem;
+    }
   }
 </style>
 
 <body>
+
   <div class="container">
     <p class="contact-sales">Contact Sales</p>
-    <p class="contact-tagline"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, distinctio
-    </p>
-    <form action="" class="contact-us-form">
+    <p class="contact-tagline">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, distinctio</p>
+    <form action="" class="contact-us-form" id="contact-form">
       <div class="first-lastbox">
         <div class="first-name-item">
           <label for="first-name">First name</label>
           <br>
-          <input id="first-name" class="first-box" type="text" required>
+          <input id="first-name" class="first-box" type="text" required maxlength="20">
         </div>
         <div class="first-name-item">
-          <label for="first-name">Last name</label>
+          <label for="last-name">Last name</label>
           <br>
-          <input id="last-name" class="first-box" type="text" required>
+          <input id="last-name" class="first-box" type="text" required maxlength="20">
         </div>
-
       </div>
+
       <label for="company" class="form-label">Company</label>
-      <input type="text" id="company" class="form-input">
+      <input type="text" id="company" class="form-input" required maxlength="20">
 
       <label for="email" class="form-label">Email</label>
-      <input type="email" id="email-input" class="form-input">
+      <input type="email" id="email-input" class="form-input" required maxlength="20">
 
       <label for="phone-number" class="form-label">Phone Number</label>
       <div class="phone-fields">
@@ -327,7 +339,8 @@
           <option value="">US</option>
           <option value="">UK</option>
         </select>
-        <input type="number" class="phone-input " required placeholder="">
+        <input type="tel" id="phone-input" class="phone-input" required placeholder="Enter your phone number"
+          maxlength="10">
       </div>
 
       <label for="message" class="form-label">Message</label>
@@ -342,76 +355,96 @@
           <span class="slider round"></span>
         </label>
         <p class="byselect">By selecting this, you agree to our
-        <p class="privacy">privacy policy</p>
+          <a target="_blank" href="#" class="privacy">privacy policy</a>
         </p>
       </div>
-      <button id="submit-btn" class="btn">Let's talk</button>
-  </div>
-  </form>
+      <button id="submit-btn" class="btn" type="submit">Let's talk</button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message">
+      <p>Thank you for contacting us! We will get back to you shortly.</p>
+    </div>
   </div>
 
   <script>
-    // JS
-    " use strict;"
-    //selecting elements
+    "use strict";
+
+    // Selecting elements
     const formEl = document.querySelector('.contact-us-form');
     const firstNameEl = document.getElementById('first-name');
     const lastNameEL = document.getElementById('last-name');
     const companyEl = document.getElementById('company');
     const emailEl = document.getElementById('email-input');
-    const phoneNumberEl = document.getElementById('phone');
-    const aggrementCheckboxEl = document.getElementById('checkbox')
-    const submitBtn = document.getElementById('submit-btn')
+    const phoneNumberEl = document.getElementById('phone-input');
+    const aggrementCheckboxEl = document.getElementById('checkbox');
+    const submitBtn = document.getElementById('submit-btn');
+    const containerEl = document.querySelector('.container');
 
-    formEl.addEventListener('submit', function () {
+    // Phone number validation
+    function isValidPhoneNumber(phoneNumber) {
+      const phonePattern = /^[0-9]{10,15}$/;  // Accepts numbers between 10 and 15 digits
+      return phonePattern.test(phoneNumber);
+    }
+
+    // Handle form submission with validation
+    formEl.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
       let isValid = true;
+      const maxLength = 20;
+
+      // Validate First Name
       if (firstNameEl.value.trim() === "") {
         isValid = false;
         alert("Please enter your first name");
-      }
-    });
-
-
-    // console.log(emailEl, phoneNumberEl, aggrementCheckboxEl);
-
-
-    submitBtn.addEventListener('click', function () {
-      let isValid = true; // only submit form when it is true
-
-      if (firstNameEl.value.trim() === "") {
+      } else if (firstNameEl.value.length > maxLength) {
         isValid = false;
-        alert("Please enter your first name");
+        alert(`First name cannot be longer than ${maxLength} characters.`);
       }
 
+      // Validate Last Name
       if (lastNameEL.value.trim() === "") {
         isValid = false;
         alert("Please enter your last name");
+      } else if (lastNameEL.value.length > maxLength) {
+        isValid = false;
+        alert(`Last name cannot be longer than ${maxLength} characters.`);
       }
 
+      // Validate Company
       if (companyEl.value.trim() === "") {
         isValid = false;
-        alert("Please enter your company information")
+        alert("Please enter your company information");
       }
 
+      // Validate Email
       if (emailEl.value.trim() === "") {
         isValid = false;
-        alert('Please enter valid email address')
+        alert('Please enter a valid email address');
       }
 
-      if (phoneNumberEl.value.trim() === "") {
+      // Validate Phone Number (using custom validation function)
+      if (!isValidPhoneNumber(phoneNumberEl.value)) {
         isValid = false;
-        alert(`please enter valid phone number`)
+        alert('Please enter a valid phone number (10 to 15 digits)');
       }
 
+      // Validate Checkbox (Agree to Privacy Policy)
       if (!aggrementCheckboxEl.checked) {
         isValid = false;
-        alert(`Agree to the privacy policy`)
-        submitBtn.style.cursor = "not-allowed";
+        alert('You must agree to the privacy policy');
       }
 
-    })
-
+      // If the form is valid, hide the form and show the success message
+      if (isValid) {
+        containerEl.style.display = "block";
+        formEl.style.display = 'none'; // Hide the form
+        document.getElementById('success-message').style.display = 'block'; // Show success message
+      }
+    });
   </script>
+
 </body>
 
 </html>

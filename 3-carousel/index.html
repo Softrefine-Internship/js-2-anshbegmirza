@@ -27,20 +27,23 @@
 
 
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: absolute;
       top: 50%;
       z-index: 2;
       border: none;
       cursor: pointer;
-      font-size: 7rem;
-      width: 10rem;
+      font-size: 3rem;
+      /* width: 5rem; */
+      padding: 0 1rem;
       border-radius: 50%;
       background-color: rgba(124, 124, 124, 0.3);
       border: 3px solid transparent;
       color: #fff;
+    }
+
+    .btn span {
+      display: block;
+      margin-top: 1rem;
     }
 
     .btn:hover {
@@ -102,11 +105,25 @@
     }
 
     .slide-dots {
+      display: flex;
       position: absolute;
-      left: 48%;
+      left: 47%;
+      /* right: 50%; */
       bottom: 0;
       margin-bottom: 2rem;
       z-index: 3;
+    }
+
+    @media (max-width: 63em) {
+      .slide-dots {
+        left: 40%;
+      }
+    }
+
+    @media (max-width: 29em) {
+      .slide-dots {
+        left: 33%;
+      }
     }
   </style>
 </head>
@@ -116,10 +133,15 @@
   <section class="slideshow-container">
     <!-- Buttons to switch next or previous -->
     <button class="btn-prev btn">
-      <span>&#8249</span>
+      <span>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </span>
     </button>
     <button class="btn-next btn">
-      <span>&#8250</span>
+      <span>
+        <!-- &#8250 -->
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </span>
     </button>
     <!-- Images -->
     <div class="slides-container">
@@ -138,6 +160,8 @@
       <div class="dots"></div>
     </div>
   </section>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 <script>
   // write javascript here
@@ -147,8 +171,8 @@
   const prevBtn = document.querySelector('.btn-prev');
   const slideEl = document.querySelectorAll(".slide");
   const slideDotsEl = document.querySelectorAll('.dots');
-  console.log(slideEl);
-  console.log(slideDotsEl);
+  // console.log(slideEl);
+  // console.log(slideDotsEl);
 
   let counter = 0;
   slideDotsEl[counter].style.opacity = 1;
